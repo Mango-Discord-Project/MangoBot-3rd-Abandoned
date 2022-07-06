@@ -2,6 +2,8 @@ import discord
 from discord.ext import commands
 from discord.ext.commands import Context, Command
 
+import func
+
 class Main(commands.Cog):
     def __init__(self, bot: commands.Bot) -> None:
         super().__init__()
@@ -43,7 +45,7 @@ class Main(commands.Cog):
     async def ping(self, ctx: Context) -> Command:
         embed = discord.Embed(
             title = "Latency Of The Bot",
-            description = f"Ping: `{round(self.bot.latency*1000, 2)}`",
+            description = f"Ping: `{func.round(self.bot.latency*1000, 2)}`",
             color = 0x2F3136
         )
         
