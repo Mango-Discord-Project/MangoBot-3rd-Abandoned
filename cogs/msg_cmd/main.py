@@ -1,6 +1,6 @@
 import discord
 from discord.ext import commands
-from discord.ext.commands import Context
+from discord.ext.commands import Context, Command
 
 class Main(commands.Cog):
     def __init__(self, bot: commands.Bot) -> None:
@@ -8,7 +8,7 @@ class Main(commands.Cog):
         self.bot: commands.Bot = bot
     
     @commands.command()
-    async def showGuilds(self, ctx: Context):
+    async def showGuilds(self, ctx: Context) -> Command:
         _guilds = self.bot.guilds
         
         guild_count = len(_guilds)
@@ -36,6 +36,16 @@ class Main(commands.Cog):
                                     ("Total Member Count (Repeat)", total_members, True),
                                     ("Total Member Count (No Repeat)", total_members_without_repeat, True)):
             embed.add_field(name=name, value=value, inline=inline)
+        
+        await ctx.reply(embed=embed, mention_author=False)
+
+    @commands.command()
+    async def ping(self, ctx: Context) -> Command:
+        embed = discord.Embed(
+            title = "Latency Of The Bot",
+            description = f"Ping: `{round(self.bot.latency*1000, 2)}`",
+            color = 0x2F3136
+        )
         
         await ctx.reply(embed=embed, mention_author=False)
 
