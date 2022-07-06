@@ -12,7 +12,10 @@ class MyBot(commands.Bot):
     def __init__(self, command_prefix="mb.", intents=discord.Intents.all()) -> None:
         super().__init__(command_prefix=command_prefix, intents=intents)
         self._add_command()
-        self.unpreload = set()
+        
+    @property
+    def unpreload(self):
+        return set()
 
     async def on_ready(self):
         print(f"Python >> Bot is Ready, Login: {self.user}")
