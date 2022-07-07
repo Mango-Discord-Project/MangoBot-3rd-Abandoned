@@ -51,9 +51,11 @@ def stringFormat(string: str, format: dict) -> str:
     """
     return string.format(**format)
 
-if __name__ == "__main__":
-    from random import random, randint
-    # for i in {randint(0, 10) + random() for i in range(10)}:
-    #     print(f"{i} -> {round(i, 3)}")
-    for i in range(len(str(3.1415926))-1):
-        print(f"{i}: {round(3.1415926, i)}")
+del Iterable
+
+# if __name__ == "__main__":
+#     from random import random, randint
+#     # for i in {randint(0, 10) + random() for i in range(10)}:
+#     #     print(f"{i} -> {round(i, 3)}")
+#     for i in range(len(str(3.1415926))-1):
+#         print(f"{i}: {round(3.1415926, i)}")
