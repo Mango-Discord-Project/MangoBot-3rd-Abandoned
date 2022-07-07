@@ -15,15 +15,15 @@ class Info(commands.Cog):
     async def info(self, ctx: Context) -> commands.Group:
         pass
     
-    @info.commmand()
-    async def user(self, ctx: Context, user: discord.User) -> Command:
-        embed = self.embedGenerator(
-            title = "User Profile"
-            )
+    # @info.commmand()
+    # async def user(self, ctx: Context, user: discord.User) -> Command:
+    #     ...
         
-    @info.command()
-    async def bot(self, ctx: Context) -> Command:
-        
+    # @info.command()
+    # async def bot(self, ctx: Context) -> Command:
+    #     ...
+
+    @info.command
     
 def setup(bot):
     bot.add_cog(Info(bot))
