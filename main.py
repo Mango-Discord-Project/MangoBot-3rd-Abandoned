@@ -3,11 +3,17 @@ from discord.ext import commands
 from discord.ext.commands import Command
 
 import os
-# import time
+import json
+import time
 import dotenv
 
 dotenv.load_dotenv()
 
+with open('./config/const.json') as rf, open('./config/const.json', 'w') as wf:
+    data = json.load(rf)
+    data['up_time'] = time.time()
+    json.dump(data, wf, indent=4, ensure_ascii=False, sort_keys=True)
+    
 class MyBot(commands.Bot):
     def __init__(self, command_prefix="mb.", intents=discord.Intents.all()) -> None:
         super().__init__(command_prefix=command_prefix, intents=intents)

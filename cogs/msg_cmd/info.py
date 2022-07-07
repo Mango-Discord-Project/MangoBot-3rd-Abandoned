@@ -3,7 +3,12 @@ from discord import Embed
 from discord.ext import commands
 from discord.ext.commands import Context, Command
 
+import json
+
 import func
+
+with open('./config/const.json') as file:
+    const = json.load(file)
 
 class Info(commands.Cog):
     def __init__(self, bot: commands.Bot) -> None:
@@ -30,7 +35,7 @@ class Info(commands.Cog):
             color = self.embedColor
         )
         for name, value in zip(("Ping", "Up time", "Memory", "Servers", "Users", "Commands", "CPU Usage", "Pycord", "Python"),
-                               (func.round())):
+                               (f'`{func.round(self.bot.latency*1000)}`', f'<>')):
             embed.add_field(name=name, value=value)
 
     @info.command()
