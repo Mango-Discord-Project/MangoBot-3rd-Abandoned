@@ -51,6 +51,8 @@ def stringFormat(string: str, format: dict) -> str:
     """
     return string.format(**format)
 
+__all__ = [round, typeCheck, stringFormat]
+
 del Iterable
 
 # if __name__ == "__main__":
