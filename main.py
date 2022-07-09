@@ -7,11 +7,15 @@ import json
 import time
 import dotenv
 
+import func
+
 dotenv.load_dotenv()
 
-with open('./config/const.json') as rf, open('./config/const.json', 'w') as wf:
+with open('./config/const.json') as rf:
     data = json.load(rf)
-    data['up_time'] = time.time()
+    data['up_time'] = func.round(time.time())
+
+with open('./config/const.json', 'w') as wf:
     json.dump(data, wf, indent=4, ensure_ascii=False, sort_keys=True)
     
 class MyBot(commands.Bot):
@@ -36,7 +40,7 @@ class MyBot(commands.Bot):
         async def cogs(ctx:commands.Context, cog_name:str, mode:str="load") -> Command:
             # if not os.path.isfile(f"{cog_name.replace('.py', '')}.py"):
             #     return await ctx.send(f"> ERROR: cog {cog_name} is not found")
-            path = cog_name.removesuffix(".py", "").replace("/", ".").replace("\\", ".")
+            path = cog_name.removesuffix(".py").replace("/", ".").replace("\\", ".")
             match mode.lower():
                 case "load" | "l":
                     self.load_extension(path)
@@ -49,7 +53,7 @@ class MyBot(commands.Bot):
                     mode = "reload"
                 case _:
                     return await ctx.send(f"> ERROR: mode {mode} is undefined")
-            await ctx.send(f">> SUCCESS: cog {cog_name} is has succeeded {mode}")
+            await ctx.send(f"> SUCCESS: cog {cog_name} is has succeeded {mode}")
         
         @commands.is_owner()
         @self.command()
