@@ -23,20 +23,21 @@ class Info(commands.Cog):
     async def info(self, ctx: Context) -> commands.Group:
         pass
     
-    @info.commmand()
+    @info.command()
     async def user(self, ctx: Context, user: discord.User) -> Command:
         ...
         
     @info.command()
     async def bot(self, ctx: Context) -> Command:
-        embed = Embed(
-            title = "Info from MangoBot",
-            description = "",
-            color = self.embedColor
-        )
-        for name, value in zip(("Ping", "Up time", "Memory", "Servers", "Users", "Commands", "CPU Usage", "Pycord", "Python"),
-                               (f'`{func.round(self.bot.latency*1000)}`', f'<>')):
-            embed.add_field(name=name, value=value)
+        # embed = Embed(
+        #     title = "Info from MangoBot",
+        #     description = "",
+        #     color = self.embedColor
+        # )
+        # for name, value in zip(("Ping", "Up time", "Memory", "Servers", "Users", "Commands", "CPU Usage", "Pycord", "Python"),
+        #                        (f'`{func.round(self.bot.latency*1000)}`', f'<>')):
+        #     embed.add_field(name=name, value=value)
+        ...
 
     @info.command()
     async def guild(self, ctx: Context) -> Command:
