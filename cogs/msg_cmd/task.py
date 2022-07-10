@@ -44,13 +44,13 @@ class Task(commands.Cog):
     def embedGenerator(self, title, description=None, *args, **kwargs) -> Embed:
         return Embed(title=title, description=description, color=self.const['embed_color'], *args, **kwargs)
 
-    @tasks.loop(minutes=10)
+    @tasks.loop(minutes=30)
     async def autoSaveData(self) -> tasks.Loop:
         while (data:=await self.loadTasksFile()) != self.tasks_cache:
             with open(self.tasks_filepath, 'w', encoding='utf8') as file:
                 json.dump(self.tasks_cache, file, indent=4, ensure_ascii=False)
         self.tasks_cache = data
-        print('>>> SUCCESS: task autoSaveData ok')
+        print('>>> TASKSYS: SUCCESS: task autoSaveData ok')
 
     @commands.command()
     async def addTask(self, ctx: Context, name: str, description: str=None) -> Command:
@@ -68,6 +68,7 @@ class Task(commands.Cog):
             )
         embed = self.embedGenerator('創建成功', f'創建內容如下:\n{self.dcJsonFormat(_)}')
         await ctx.send(embed=embed)
+        print(f'>>> TASKSYS: SUCCESS: task {ctx.author} create')
 
     @commands.command()
     async def delTask(self, ctx: Context, id_: int) -> Command:
@@ -79,6 +80,7 @@ class Task(commands.Cog):
         del data[id_]
         embed = self.embedGenerator('刪除成功', f'已成功刪除以下資料:\n{self.dcJsonFormat(_)}')
         await ctx.send(embed=embed)
+        print(f'>>> TASKSYS: SUCCESS: task {ctx.author} del data: {data[id_]}')
     
     @commands.command()
     async def endTask(self, ctx: Context, id_: int) -> Command:
@@ -92,6 +94,7 @@ class Task(commands.Cog):
         data[id_]['endTime'] = func.round(time.time())
         embed = self.embedGenerator('任務完成', f'{self.dcJsonFormat(data[id_])}')
         await ctx.send(embed=embed)
+        print(f'>>> TASKSYS: SUCCESS: task {ctx.author} del data: {data[id_]}')
         
     
     @commands.command()
