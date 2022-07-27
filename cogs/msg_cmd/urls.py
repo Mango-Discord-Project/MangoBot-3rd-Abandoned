@@ -1,9 +1,9 @@
+import os
+import json
+
 import discord
 from discord.ext import commands, tasks
 from discord.ext.commands import Context, Command
-
-import os
-import json
 
 class Urls(commands.Cog):
     def __init__(self, bot: commands.Bot) -> None:
@@ -38,6 +38,7 @@ class Urls(commands.Cog):
 
     @commands.command()
     async def addUrl(self, ctx: Context, url: str, group: str="default") -> Command:
+        ...
         
 
 def setup(bot):

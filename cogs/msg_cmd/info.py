@@ -1,9 +1,9 @@
+import json
+
 import discord
 from discord import Embed
 from discord.ext import commands
 from discord.ext.commands import Context, Command
-
-import json
 
 import func
 
